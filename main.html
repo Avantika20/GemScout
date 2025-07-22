@@ -1,0 +1,1555 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>GemScout - MIS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" />
+  <style>
+    body {
+      font-family: "Manrope", sans-serif;
+      background: linear-gradient(135deg, #0b1d51, #725cad);
+      color: #e6d9ff;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+ 
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, #d9c1f0 90%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 25% 40%, #b89de3 90%, transparent 100%),
+        radial-gradient(1px 1px at 40% 10%, #d9c1f0 90%, transparent 100%),
+        radial-gradient(1.2px 1.2px at 60% 30%, #b89de3 90%, transparent 100%),
+        radial-gradient(1px 1px at 75% 50%, #d9c1f0 90%, transparent 100%),
+        radial-gradient(1.3px 1.3px at 85% 80%, #b89de3 90%, transparent 100%),
+        radial-gradient(1px 1px at 15% 80%, #d9c1f0 90%, transparent 100%),
+        radial-gradient(1.4px 1.4px at 50% 70%, #b89de3 90%, transparent 100%);
+      background-repeat: no-repeat;
+      animation: twinkle 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.6;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .cute-font {
+      font-family: "Pacifico", cursive;
+      letter-spacing: 0.05em;
+      text-shadow: 0 2px 6px rgb(114 92 173 / 0.6);
+      color: #d9c1f0;
+    }
+
+    header {
+      background: #3a2a5acc;
+      backdrop-filter: saturate(180%) blur(10px);
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.3);
+      border-bottom: 2px solid #b89de3;
+      z-index: 60;
+      transition: background-color 0.4s ease;
+      position: relative;
+    }
+    header:hover {
+      background: #3a2a5eee;
+    }
+
+    a.cute-font:hover {
+      color: #b89de3;
+      text-shadow: 0 0 8px #b89de3;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    nav a {
+      position: relative;
+      font-weight: 600;
+      color: #d9c1f0;
+      transition: color 0.3s ease;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #b89de3;
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+    nav a:hover,
+    nav a:focus {
+      color: #b89de3;
+      outline: none;
+    }
+    nav a:hover::after,
+    nav a:focus::after {
+      width: 100%;
+    }
+
+    #mobile-menu-button {
+      transition: color 0.3s ease;
+      color: #d9c1f0;
+    }
+    #mobile-menu-button:hover,
+    #mobile-menu-button:focus {
+      color: #b89de3;
+      outline: none;
+    }
+
+    #mobile-menu {
+      background: #3a2a5acc;
+      backdrop-filter: saturate(180%) blur(10px);
+      border-top: 2px solid #b89de3;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
+      transition: max-height 0.4s ease;
+      color: #d9c1f0;
+    }
+    #mobile-menu a {
+      padding: 0.75rem 1rem;
+      border-radius: 0.375rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      color: #d9c1f0;
+    }
+    #mobile-menu a:hover,
+    #mobile-menu a:focus {
+      background-color: #b89de3;
+      color: #2b1a37;
+      outline: none;
+      box-shadow: 0 0 8px #b89de3;
+    }
+
+    .header-visual {
+      filter: drop-shadow(0 0 2px #b89de3);
+      transition: transform 0.5s ease;
+      fill: #d9c1f0;
+    }
+    a.cute-font:hover .header-visual {
+      transform: translateY(-50%) rotate(180deg) scale(1.1);
+      filter: drop-shadow(0 0 6px #b89de3);
+    }
+
+   
+    section[aria-label="Hero section"] {
+     
+      color: #f9e9ff;
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+     
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    section[aria-label="Hero section"]::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      left: -20%;
+      width: 200%;
+      height: 200%;
+     
+      z-index: 0;
+      pointer-events: none;
+      animation: pulseGlow 6s ease-in-out infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+      }
+    }
+
+    section[aria-label="Hero section"] h1 {
+      position: relative;
+      z-index: 1;
+      font-size: 3.5rem;
+      line-height: 1.1;
+      text-shadow: 0 2px 8px rgb(0 0 0 / 0.5);
+      transition: text-shadow 0.3s ease;
+      color: #f9e9ff;
+    }
+    section[aria-label="Hero section"] h1:hover {
+      text-shadow: 0 0 20px #f9e9ff, 0 0 30px #b89de3;
+    }
+    section[aria-label="Hero section"] p {
+      position: relative;
+      z-index: 1;
+      font-weight: 500;
+      font-size: 1.25rem;
+      max-width: 28rem;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 0 1px 4px rgb(0 0 0 / 0.3);
+      color: #f9e9ff;
+    }
+
+    
+    #search-input {
+      background: #b89de3cc;
+      border: 2px solid transparent;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      font-weight: 600;
+      color: #2b1a37;
+      box-shadow: 0 2px 6px rgb(114 92 173 / 0.5);
+    }
+    #search-input:focus {
+      border-color: #d9c1f0;
+      box-shadow: 0 0 12px #d9c1f0;
+      outline: none;
+      background: #f9e9ff;
+      color: #2b1a37;
+    }
+    #search-btn {
+      background: linear-gradient(90deg, #d397fa, #8364e8);
+      border: none;
+      font-weight: 700;
+      color: #f9e9ff;
+      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      filter: drop-shadow(0 0 4px #8364e8);
+      border-radius: 9999px;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      box-shadow: 0 4px 12px rgb(131 100 232 / 0.6);
+    }
+    #search-btn:hover,
+    #search-btn:focus {
+      background: linear-gradient(90deg, #8364e8, #d397fa);
+      color: #f9e9ff;
+      box-shadow: 0 0 20px #f9e9ff;
+      outline: none;
+    }
+
+    
+    #locate-btn,
+    #location-submit {
+      background: linear-gradient(90deg, #d397fa, #8364e8);
+      border: none;
+      font-weight: 700;
+      color: #f9e9ff;
+      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      filter: drop-shadow(0 0 4px #8364e8);
+      white-space: nowrap;
+      border-radius: 9999px;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      box-shadow: 0 4px 12px rgb(131 100 232 / 0.6);
+    }
+    #locate-btn:hover,
+    #locate-btn:focus,
+    #location-submit:hover,
+    #location-submit:focus {
+      background: linear-gradient(90deg, #8364e8, #d397fa);
+      color: #f9e9ff;
+      box-shadow: 0 0 20px #f9e9ff;
+      outline: none;
+    }
+    #location-input {
+      background: #b89de3cc;
+      border: 2px solid transparent;
+      box-shadow: 0 2px 6px rgb(114 92 173 / 0.5);
+      font-weight: 600;
+      color: #2b1a37;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 0.375rem;
+    }
+    #location-input:focus {
+      border-color: #d9c1f0;
+      box-shadow: 0 0 12px #d9c1f0;
+      outline: none;
+      background: #f9e9ff;
+      color: #2b1a37;
+    }
+
+
+    #location-suggestions {
+      background: #d9c1f0;
+      border: 2px solid #5a3f8a;
+      border-top: none;
+      max-height: 220px;
+      overflow-y: auto;
+      width: 100%;
+      z-index: 1100;
+      border-radius: 0 0 0.5rem 0.5rem;
+      box-shadow: 0 6px 12px rgb(114 92 173 / 0.6);
+      transition: opacity 0.3s ease;
+      color: #2b1a37;
+      position: absolute;
+    }
+    #location-suggestions button {
+      width: 100%;
+      text-align: left;
+      padding: 0.75rem 1.25rem;
+      font-size: 1rem;
+      color: #2b1a37;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    #location-suggestions button:hover,
+    #location-suggestions button:focus {
+      background-color: #5a3f8a;
+      color: #f9e9ff;
+      outline: none;
+      box-shadow: 0 0 12px #f9e9ff;
+    }
+
+
+    #location-status {
+      font-weight: 600;
+      color: #f9e9ff;
+      text-shadow: 0 1px 2px rgb(91 69 133 / 0.5);
+      min-height: 1.5rem;
+      transition: color 0.3s ease;
+    }
+
+    main h2 {
+
+      font-weight: 900;
+      font-size: 2.25rem;
+      color: #d9c1f0;
+      border-bottom: 3px solid #b89de3;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+      text-shadow: 0 1px 3px rgb(91 69 133 / 0.5);
+      transition: color 0.3s ease;
+    }
+    main h2:hover {
+      color: #f9e9ff;
+      border-color: #f9e9ff;
+      text-shadow: 0 0 10px #b89de3;
+    }
+
+  
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 1.25rem;
+      padding-bottom: 1rem;
+      background-color: #3a2a5a;
+      border-radius: 1rem;
+      padding: 1.5rem 1.5rem 2rem 1.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: #b89de3 #5a3f8a;
+      box-shadow: 0 8px 20px rgb(91 69 133 / 0.3);
+      transition: box-shadow 0.3s ease;
+      color: #f9e9ff;
+
+    }
+    .carousel:hover {
+      box-shadow: 0 12px 30px rgb(91 69 133 / 0.6);
+    }
+    .carousel::-webkit-scrollbar {
+      height: 12px;
+    }
+    .carousel::-webkit-scrollbar-track {
+      background: #5a3f8a;
+      border-radius: 12px;
+      margin-left: none;
+    }
+    .carousel::-webkit-scrollbar-thumb {
+      background-color: #b89de3;
+      border-radius: 12px;
+      border: 3px solid #5a3f8a;
+      transition: background-color 0.3s ease;
+    }
+    .carousel::-webkit-scrollbar-thumb:hover {
+      background-color: #d9c1f0;
+    }
+
+
+    .carousel-item {
+      scroll-snap-align: start;
+      flex: 0 0 auto;
+      width: 300px;
+      background-color: #5a3f8a;
+      border-radius: 1rem;
+      box-shadow: 0 6px 14px rgb(0 0 0 / 0.3);
+      position: relative;
+      padding: 1.5rem 2rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      cursor: pointer;
+      transition: box-shadow 0.4s ease, transform 0.3s ease;
+      border: 6px solid #d9c1f0;
+      box-sizing: border-box;
+      user-select: none;
+      will-change: transform, box-shadow;
+      background-image: linear-gradient(135deg, #b89de3 0%, #d9c1f0 100%);
+      color: #2b1a37;
+    }
+    .carousel-item:hover,
+    .carousel-item:focus {
+      box-shadow: 0 14px 28px rgb(0 0 0 / 0.5);
+      outline: none;
+      transform: translateY(-6px) scale(1.05);
+      z-index: 20;
+      border-color: #f9e9ff;
+      background-image: linear-gradient(135deg, #f9e9ff 0%, #b89de3 100%);
+      color: #2b1a37;
+    }
+
+    .carousel-item::before,
+    .carousel-item::after {
+      content: "";
+      position: absolute;
+      top: 14px;
+      bottom: 14px;
+      width: 14px;
+      background: repeating-linear-gradient(
+        to bottom,
+        #d9c1f0,
+        #d9c1f0 7px,
+        #5a3f8a 7px,
+        #5a3f8a 14px
+      );
+      border-radius: 3px;
+      box-shadow: inset 0 0 4px rgb(0 0 0 / 0.4);
+      z-index: 10;
+      transition: background 0.3s ease;
+    }
+    .carousel-item:hover::before,
+    .carousel-item:hover::after,
+    .carousel-item:focus::before,
+    .carousel-item:focus::after {
+      background: repeating-linear-gradient(
+        to bottom,
+        #f9e9ff,
+        #f9e9ff 7px,
+        #b89de3 7px,
+        #b89de3 14px
+      );
+      box-shadow: inset 0 0 6px #b89de3;
+    }
+    .carousel-item::before {
+      left: -22px;
+    }
+    .carousel-item::after {
+      right: -22px;
+    }
+
+   
+    .carousel-item h3 {
+      font-weight: 800;
+      color: #2b1a37;
+      margin-bottom: 0.75rem;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      text-shadow: 0 1px 3px rgb(91 69 133 / 0.5);
+      user-select: text;
+    }
+
+ 
+    .carousel-item p {
+      color: #3a3f6e;
+      font-size: 0.875rem;
+      font-style: italic;
+      margin-top: 0.4rem;
+      line-height: 1.3;
+      user-select: text;
+      text-shadow: 0 1px 2px rgb(91 69 133 / 0.3);
+    }
+
+ 
+    .carousel p.text-secondary-400 {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #f9e9ff;
+      user-select: none;
+      padding: 2rem 0;
+      width: 100%;
+      text-align: center;
+      letter-spacing: 0.03em;
+      text-shadow: 0 1px 2px rgb(91 69 133 / 0.2);
+    }
+
+   
+    #details-modal {
+      background: rgba(43, 26, 55, 0.85);
+      backdrop-filter: blur(6px);
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+    #details-modal[aria-hidden="true"] {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #details-modal > div {
+      background: #b89de3;
+      border-radius: 1rem;
+      box-shadow: 0 12px 36px rgb(0 0 0 / 0.6);
+      max-width: 40rem;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem 2.5rem;
+      position: relative;
+      animation: modalFadeIn 0.4s ease forwards;
+      color: #2b1a37;
+    }
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    #modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: transparent;
+      border: none;
+      color: #2b1a37;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      filter: drop-shadow(0 0 2px #5a3f8a);
+    }
+    #modal-close:hover,
+    #modal-close:focus {
+      color: #5a3f8a;
+      outline: none;
+      filter: drop-shadow(0 0 6px #f9e9ff);
+    }
+    #modal-title {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      color: #2b1a37;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 1px 3px rgb(91 69 133 / 0.5);
+    }
+    #modal-description {
+      font-size: 1rem;
+      color: #3a3f6e;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+    #modal-address,
+    #modal-date,
+    #modal-distance {
+      font-style: italic;
+      color: #665c4a;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      user-select: text;
+      text-shadow: 0 1px 2px rgb(91 69 133 / 0.3);
+    }
+    #modal-map-link {
+      display: inline-block;
+      margin-top: 1rem;
+      font-weight: 700;
+      color: #5a3f8a;
+      text-decoration: none;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      user-select: text;
+    }
+    #modal-map-link:hover,
+    #modal-map-link:focus {
+      color: #3a2a5a;
+      text-shadow: 0 0 8px #f9e9ff;
+      outline: none;
+    }
+
+  
+    footer {
+      background: #3a2a5acc;
+      border-top: 2px solid #b89de3;
+      color: #d9c1f0;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 1.5rem 1rem;
+      text-shadow: 0 1px 2px rgb(91 69 133 / 0.3);
+      user-select: none;
+      letter-spacing: 0.05em;
+      transition: background-color 0.3s ease;
+      position: relative;
+      z-index: 10;
+    }
+    footer:hover {
+      background-color: #5a3f8a22;
+    }
+
+    @media (max-width: 640px) {
+      section[aria-label="Hero section"] h1 {
+        font-size: 2.5rem;
+      }
+      section[aria-label="Hero section"] p {
+        font-size: 1.1rem;
+      }
+      .carousel-item {
+        width: 240px;
+        border-width: 5px;
+        padding: 1.25rem 1.5rem 1.75rem 1.5rem;
+      }
+      .carousel-item::before,
+      .carousel-item::after {
+        width: 12px;
+        top: 12px;
+        bottom: 12px;
+        left: -18px;
+        right: -18px;
+      }
+      .carousel-item h3 {
+        font-size: 1.25rem;
+      }
+      main h2 {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#e6f0ff',
+              100: '#cbd9ff',
+              200: '#a3bfff',
+              300: '#7a9fff',
+              400: '#527fff',
+              500: '#0B1D51',
+              600: '#09173f',
+              700: '#06112d',
+              800: '#040b1b',
+              900: '#02060a',
+            },
+            highlight: {
+              50: '#f9f0ff',
+              100: '#e6d9ff',
+              200: '#c9aaff',
+              300: '#ad7aff',
+              400: '#9250ff',
+              500: '#725CAD',
+              600: '#5a4785',
+              700: '#432f5e',
+              800: '#2b1a37',
+              900: '#160a1b',
+            },
+            secondary: {
+              50: '#fff9e6',
+              100: '#fff2cb',
+              200: '#ffeaa3',
+              300: '#ffe27a',
+              400: '#ffdb52',
+              500: '#FFE3A9',
+              600: '#ffffff',
+              700: '#998c5a',
+              800: '#665c3a',
+              900: '#332e1d',
+            },
+            bg: {
+              50: '#e6f0ff',
+              100: '#cbd9ff',
+              200: '#a3bfff',
+              300: '#7a9fff',
+              400: '#527fff',
+              500: '#0B1D51',
+              600: '#09173f',
+              700: '#06112d',
+              800: '#040b1b',
+              900: '#02060a',
+            }
+          },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="min-h-screen flex flex-col relative text-primary-700">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 relative">
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 relative">
+      <a class="text-2xl font-bold flex items-center space-x-3 relative pl-12 cute-font select-none"
+        href="index.html">
+     
+        <span style="margin-left: 30px;">GemScout</span>
+      </a>
+      <nav class="hidden md:flex space-x-10 font-semibold select-none" aria-label="Primary navigation">
+        <a class="hover:text-highlight-500 transition focus:outline-none focus:ring-2 focus:ring-highlight-300 rounded" href="#cafes">Cafes</a>
+        <a class="hover:text-highlight-500 transition focus:outline-none focus:ring-2 focus:ring-highlight-300 rounded" href="#gamezones">Gamezones</a>
+        <a class="hover:text-highlight-500 transition focus:outline-none focus:ring-2 focus:ring-highlight-300 rounded" href="#bookstores">Bookstores</a>
+        <a class="hover:text-highlight-500 transition focus:outline-none focus:ring-2 focus:ring-highlight-300 rounded" href="#cinemas">Cinemas</a>
+        <a class="hover:text-highlight-500 transition focus:outline-none focus:ring-2 focus:ring-highlight-300 rounded" href="#shopping">Shopping</a>
+        <a class="hover:text-highlight-500 transition focus:outline-none focus:ring-2 focus:ring-highlight-300 rounded" href="#fun">Fun</a>
+      </nav>
+      <button
+        class="md:hidden focus:outline-none hover:text-highlight-500 transition"
+        id="mobile-menu-button"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false">
+        <i class="fas fa-bars fa-lg"></i>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div class="hidden md:hidden shadow" id="mobile-menu" role="menu" aria-label="Mobile navigation menu">
+      <nav
+        class="flex flex-col space-y-2 px-4 py-3 font-semibold select-none"
+      >
+        <a class="hover:text-highlight-500 transition focus:outline-none focus:ring-2 focus:ring-highlight-300 rounded" href="#cafes" role="menuitem"
+          >Cafes</a
+        >
+        <a class="hover:text-highlight-500 transition focus:outline-none focus:ring-2 focus:ring-highlight-300 rounded" href="#gamezones" role="menuitem"
+          >Gamezones</a
+        >
+        <a class="hover:text-highlight-500 transition focus:outline-none focus:ring-2 focus:ring-highlight-300 rounded" href="#bookstores" role="menuitem"
+          >Bookstores</a
+        >
+        <a class="hover:text-highlight-500 transition focus:outline-none focus:ring-2 focus:ring-highlight-300 rounded" href="#cinemas" role="menuitem"
+          >Cinemas</a
+        >
+        <a class="hover:text-highlight-500 transition focus:outline-none focus:ring-2 focus:ring-highlight-300 rounded" href="#shopping" role="menuitem"
+          >Shopping</a
+        >
+        <a class="hover:text-highlight-500 transition focus:outline-none focus:ring-2 focus:ring-highlight-300 rounded" href="#fun" role="menuitem"
+          >Fun</a
+        >
+      </nav>
+    </div>
+  </header>
+
+  <section
+    class="py-20 px-6 text-center relative"
+    aria-label="Hero section"
+  >
+    <h1 class="text-4xl sm:text-5xl font-extrabold max-w-4xl mx-auto leading-tight cute-font select-text">
+      Discover Hidden Gems Near You
+    </h1>
+    <p class="mt-4 text-lg max-w-2xl mx-auto select-text">
+      Explore the best local things to do around you with just a click!
+    </p>
+    <div class="mt-8 max-w-xl mx-auto flex flex-col sm:flex-row gap-4 items-center justify-center">
+      <input
+        id="search-input"
+        type="text"
+        aria-label="Search for cafes, gamezones, bookstores, cinemas, shopping, fun activities"
+        placeholder="Search cafes, gamezones, bookstores, cinemas, shopping, fun..."
+        class="flex-grow rounded-md px-4 py-3 text-primary-700 focus:outline-none focus:ring-2 focus:ring-highlight-300 shadow-md"
+      />
+      <button
+        id="search-btn"
+        class="bg-gradient-to-r from-[#d397fa] to-[#8364e8] text-white font-semibold rounded-full px-6 py-3 hover:from-[#8364e8] hover:to-[#d397fa] transition inline-flex items-center justify-center shadow-md focus:outline-none focus:ring-2 focus:ring-highlight-300"
+        aria-label="Search"
+        type="button"
+      >
+        <i class="fas fa-search mr-2"></i> Search
+      </button>
+    </div>
+    <form
+      id="location-form"
+      class="mt-6 relative flex flex-col sm:flex-row gap-4 max-w-xl mx-auto items-center justify-center"
+      aria-label="Choose location form"
+      autocomplete="off"
+    >
+      <button
+        type="button"
+        id="locate-btn"
+        class="bg-gradient-to-r from-[#d397fa] to-[#8364e8] text-white font-semibold rounded-full px-6 py-3 hover:from-[#8364e8] hover:to-[#d397fa] transition inline-flex items-center whitespace-nowrap shadow-md focus:outline-none focus:ring-2 focus:ring-highlight-300"
+        aria-label="Find gems near me"
+      >
+        <i class="fas fa-location-arrow mr-2"></i> Find Gems Near Me
+      </button>
+      <div class="relative flex-grow w-full sm:w-auto">
+        <input
+          id="location-input"
+          name="location-input"
+          type="text"
+          aria-label="Enter a specific location"
+          placeholder="Or enter a location (e.g. New York, Times Square)"
+          class="w-full rounded-md px-4 py-3 text-primary-700 focus:outline-none focus:ring-2 focus:ring-highlight-300 shadow-md"
+          aria-autocomplete="list"
+          aria-controls="location-suggestions"
+          aria-expanded="false"
+          role="combobox"
+          aria-haspopup="listbox"
+          spellcheck="false"
+          autocorrect="off"
+          autocapitalize="off"
+          autocomplete="off"
+        />
+        <div
+          id="location-suggestions"
+          role="listbox"
+          class="hidden"
+          aria-label="Location suggestions"
+        ></div>
+      </div>
+      <button
+        type="submit"
+        id="location-submit"
+        class="bg-gradient-to-r from-[#d397fa] to-[#8364e8] text-white font-semibold rounded-full px-6 py-3 hover:from-[#8364e8] hover:to-[#d397fa] transition inline-flex items-center whitespace-nowrap shadow-md focus:outline-none focus:ring-2 focus:ring-highlight-300"
+        aria-label="Find gems near entered location"
+      >
+        <i class="fas fa-map-marker-alt mr-2"></i> Find Gems
+      </button>
+    </form>
+    <p
+      id="location-status"
+      class="mt-4 text-secondary-400 max-w-xl mx-auto text-sm select-text"
+      aria-live="polite"
+    ></p>
+  </section>
+
+  <!-- Main Content -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+   
+    <section class="mb-16" id="cafes" aria-label="Nearby Cafes">
+      <h2
+        class="mb-8"
+      >
+        Cafes Near You
+      </h2>
+      <div
+        aria-live="polite"
+        class="carousel"
+        id="cafes-list"
+      >
+        <p class="text-secondary-400 col-span-full text-center" id="cafes-loading" aria-live="polite" aria-atomic="true">
+          Please find your location or enter a location to load nearby cafes.
+        </p>
+      </div>
+    </section>
+
+
+    <section class="mb-16" id="gamezones" aria-label="Nearby Gamezones">
+      <h2
+        class="mb-8"
+      >
+        Gamezones Near You
+      </h2>
+      <div
+        aria-live="polite"
+        class="carousel"
+        id="gamezones-list"
+      >
+        <p class="text-secondary-400 col-span-full text-center" id="gamezones-loading" aria-live="polite" aria-atomic="true">
+          Please find your location or enter a location to load nearby gamezones.
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-16" id="bookstores" aria-label="Nearby Bookstores">
+      <h2
+        class="mb-8"
+      >
+        Bookstores Near You
+      </h2>
+      <div
+        aria-live="polite"
+        class="carousel"
+        id="bookstores-list"
+      >
+        <p class="text-secondary-400 col-span-full text-center" id="bookstores-loading" aria-live="polite" aria-atomic="true">
+          Please find your location or enter a location to load nearby bookstores.
+        </p>
+      </div>
+    </section>
+
+  
+    <section class="mb-16" id="cinemas" aria-label="Nearby Cinemas">
+      <h2
+        class="mb-8"
+      >
+        Cinemas Near You
+      </h2>
+      <div
+        aria-live="polite"
+        class="carousel"
+        id="cinemas-list"
+      >
+        <p class="text-secondary-400 col-span-full text-center" id="cinemas-loading" aria-live="polite" aria-atomic="true">
+          Please find your location or enter a location to load nearby cinemas.
+        </p>
+      </div>
+    </section>
+
+    
+    <section class="mb-16" id="shopping" aria-label="Nearby Shopping Spots">
+      <h2
+        class="mb-8"
+      >
+        Shopping Spots Near You
+      </h2>
+      <div
+        aria-live="polite"
+        class="carousel"
+        id="shopping-list"
+      >
+        <p class="text-secondary-400 col-span-full text-center" id="shopping-loading" aria-live="polite" aria-atomic="true">
+          Please find your location or enter a location to load nearby shopping spots.
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-16" id="fun" aria-label="Nearby Fun Activities">
+      <h2
+        class="mb-8"
+      >
+        Fun Activities Near You
+      </h2>
+      <div
+        aria-live="polite"
+        class="carousel"
+        id="fun-list"
+      >
+        <p class="text-secondary-400 col-span-full text-center" id="fun-loading" aria-live="polite" aria-atomic="true">
+          Please find your location or enter a location to load nearby fun activities.
+        </p>
+      </div>
+    </section>
+
+ 
+    <div
+      aria-describedby="modal-description"
+      aria-labelledby="modal-title"
+      aria-modal="true"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden"
+      id="details-modal"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div
+        class="bg-secondary-200 rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-lg relative"
+      >
+        <button
+          aria-label="Close details modal"
+          class="absolute top-4 right-4 text-primary-700 hover:text-highlight-500 focus:outline-none"
+          id="modal-close"
+        >
+          <i class="fas fa-times fa-lg"></i>
+        </button>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold text-primary-700 mb-2" id="modal-title"></h3>
+          <p class="text-primary-700 mb-4" id="modal-description"></p>
+          <p class="text-primary-600 italic mb-2" id="modal-address"></p>
+          <p class="text-primary-600 italic font-semibold" id="modal-date"></p>
+          <p class="text-primary-600 italic mt-2" id="modal-distance"></p>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="modal-map-link"
+            class="inline-block mt-4 text-primary-700 font-semibold hover:underline"
+            >View on Map</a
+          >
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-[#f9f0ff] py-8 px-6 relative z-20">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+      <div class="text-center md:text-left">
+        <h3 class="text-2xl font-extrabold tracking-wide mb-1">GemScout</h3>
+        <p class="text-sm font-light">Discover the soul of your city</p>
+      </div>
+      <div class="flex space-x-6 text-[#d8c9f9]">
+        <a href="#" aria-label="Facebook" class="hover:text-[#f9f0ff] transition-colors duration-300">
+          <i class="fab fa-facebook-f text-lg"></i>
+        </a>
+        <a href="#" aria-label="Twitter" class="hover:text-[#f9f0ff] transition-colors duration-300">
+          <i class="fab fa-twitter text-lg"></i>
+        </a>
+        <a href="#" aria-label="Instagram" class="hover:text-[#f9f0ff] transition-colors duration-300">
+          <i class="fab fa-instagram text-lg"></i>
+        </a>
+        <a href="#" aria-label="LinkedIn" class="hover:text-[#f9f0ff] transition-colors duration-300">
+          <i class="fab fa-linkedin-in text-lg"></i>
+        </a>
+      </div>
+      <p class="text-xs font-light">&copy; 2025 GemScout</p>
+    </div>
+  </footer>
+
+
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    mobileMenuButton.addEventListener("click", () => {
+      const expanded =
+        mobileMenuButton.getAttribute("aria-expanded") === "true" || false;
+      mobileMenuButton.setAttribute("aria-expanded", !expanded);
+      mobileMenu.classList.toggle("hidden");
+    });
+
+  
+    const modal = document.getElementById("details-modal");
+    const modalClose = document.getElementById("modal-close");
+    const modalTitle = document.getElementById("modal-title");
+    const modalDescription = document.getElementById("modal-description");
+    const modalAddress = document.getElementById("modal-address");
+    const modalDate = document.getElementById("modal-date");
+    const modalDistance = document.getElementById("modal-distance");
+    const modalMapLink = document.getElementById("modal-map-link");
+
+    
+    function openModal(item) {
+      modalTitle.textContent = item.name || "";
+      modalDescription.textContent = item.description || "";
+      modalAddress.textContent = item.address || "";
+      modalDistance.textContent = item.distance
+        ? `Distance: ${item.distance.toFixed(2)} km`
+        : "";
+      if (item.date) {
+        const dateObj = new Date(item.date);
+        modalDate.textContent = `Date: ${dateObj.toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}`;
+      } else {
+        modalDate.textContent = "";
+      }
+      modalMapLink.href = item.lat && item.lng
+        ? `https://www.google.com/maps/search/?api=1&query=${item.lat},${item.lng}`
+        : "#";
+      modalMapLink.style.display = item.lat && item.lng ? "inline-block" : "none";
+      modal.classList.remove("hidden");
+      modal.setAttribute("aria-hidden", "false");
+      modal.focus();
+      document.body.style.overflow = "hidden";
+    }
+
+   
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+   
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
+
+  
+    function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+      const R = 6371; 
+      const dLat = deg2rad(lat2 - lat1);
+      const dLon = deg2rad(lon2 - lon1);
+      const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) *
+          Math.cos(deg2rad(lat2)) *
+          Math.sin(dLon / 2) *
+          Math.sin(dLon / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      const d = R * c; 
+      return d;
+    }
+
+    function deg2rad(deg) {
+      return deg * (Math.PI / 180);
+    }
+
+   
+    async function fetchPlaces(lat, lng, radiusMeters, type) {
+      let osmTag = "";
+      switch (type) {
+        case "cafe":
+          osmTag = '["amenity"="cafe"]';
+          break;
+        case "gamezone":
+          
+          osmTag = '["amenity"="arcade"],["amenity"="amusement_arcade"],["leisure"="bowling_alley"],["leisure"="indoor_playground"],["leisure"="playground"],["amenity"="casino"],["amenity"="gambling"]';
+          break;
+        case "bookstore":
+          osmTag = '["shop"="books"]';
+          break;
+        case "cinema":
+          osmTag = '["amenity"="cinema"]';
+          break;
+        case "shopping":
+          osmTag = '["shop"],["amenity"="marketplace"],["shop"="mall"]';
+          break;
+        case "fun":
+         
+          osmTag = '["amenity"="escape_game"],["leisure"="park"],["sport"],["tourism"="attraction"],["amenity"="theatre"],["amenity"="arts_centre"],["leisure"="playground"],["leisure"="indoor_playground"]';
+          break;
+        default:
+          return [];
+      }
+
+      
+      let query = "";
+      if (["gamezone", "shopping", "fun"].includes(type)) {
+        const tags = osmTag.split(",");
+        query = `
+          [out:json][timeout:25];
+          (
+            ${tags
+              .map(
+                (tag) =>
+                  `node${tag}(around:${radiusMeters},${lat},${lng});way${tag}(around:${radiusMeters},${lat},${lng});relation${tag}(around:${radiusMeters},${lat},${lng});`
+              )
+              .join("")}
+          );
+          out center tags;
+        `;
+      } else {
+        query = `
+          [out:json][timeout:25];
+          (
+            node${osmTag}(around:${radiusMeters},${lat},${lng});
+            way${osmTag}(around:${radiusMeters},${lat},${lng});
+            relation${osmTag}(around:${radiusMeters},${lat},${lng});
+          );
+          out center tags;
+        `;
+      }
+
+      const url = "https://overpass-api.de/api/interpreter";
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          body: query,
+          headers: {
+            "Content-Type": "text/plain",
+          },
+        });
+        if (!response.ok) throw new Error("Failed to fetch places");
+        const data = await response.json();
+
+        const places = data.elements
+          .filter((el) => el.tags && el.tags.name)
+          .map((el) => {
+            const latLng =
+              el.type === "node"
+                ? { lat: el.lat, lng: el.lon }
+                : el.center || { lat: 0, lng: 0 };
+            return {
+              id: el.id,
+              name: el.tags.name,
+              description: "",
+              address:
+                el.tags["addr:street"] && el.tags["addr:housenumber"]
+                  ? `${el.tags["addr:housenumber"]} ${el.tags["addr:street"]}`
+                  : el.tags["addr:street"] || "",
+              lat: latLng.lat,
+              lng: latLng.lng,
+              type,
+            };
+          });
+
+        return places;
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
+    }
+
+    function addDistanceToPlaces(places, userLat, userLng) {
+      places.forEach((place) => {
+        if (place.lat && place.lng) {
+          place.distance = getDistanceFromLatLonInKm(userLat, userLng, place.lat, place.lng);
+        } else {
+          place.distance = null;
+        }
+      });
+    }
+
+  
+    function renderPlaces(containerId, places, type) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      if (!places.length) {
+        container.innerHTML =
+          '<p class="text-secondary-400 col-span-full text-center select-none">No ' +
+          type +
+          " found nearby.</p>";
+        return;
+      }
+
+      places.sort((a, b) => (a.distance || 9999) - (b.distance || 9999));
+
+      places.forEach((place) => {
+        const article = document.createElement("article");
+        article.setAttribute("tabindex", "0");
+        article.setAttribute("role", "button");
+        article.className =
+          "carousel-item";
+        article.setAttribute("aria-label", `${type}: ${place.name}`);
+
+        const h3 = document.createElement("h3");
+        h3.textContent = place.name;
+        article.appendChild(h3);
+
+        if (place.address) {
+          const pAddr = document.createElement("p");
+          pAddr.textContent = place.address;
+          article.appendChild(pAddr);
+        }
+
+        if (place.distance !== null) {
+          const pDist = document.createElement("p");
+          pDist.textContent = `Distance: ${place.distance.toFixed(2)} km`;
+          article.appendChild(pDist);
+        }
+
+        article.addEventListener("click", () => openModal(place));
+        article.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openModal(place);
+          }
+        });
+
+        container.appendChild(article);
+      });
+    }
+
+   
+    async function geocodeLocation(location) {
+      const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+        location
+      )}&limit=1`;
+      try {
+        const response = await fetch(url, {
+          headers: {
+            "User-Agent": "LocalGemsApp/1.0 (your-email@example.com)",
+            "Referer": window.location.origin,
+          },
+        });
+        if (!response.ok) throw new Error("Failed to geocode location");
+        const data = await response.json();
+        if (data.length === 0) return null;
+        return {
+          lat: parseFloat(data[0].lat),
+          lng: parseFloat(data[0].lon),
+          display_name: data[0].display_name,
+        };
+      } catch (error) {
+        console.error(error);
+        return null;
+      }
+    }
+
+ 
+    let autocompleteTimeout = null;
+    async function fetchLocationSuggestions(query) {
+      if (!query || query.trim().length < 3) {
+        return [];
+      }
+      const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+        query
+      )}&addressdetails=1&limit=5`;
+      try {
+        const response = await fetch(url, {
+          headers: {
+            "User-Agent": "LocalGemsApp/1.0 (your-email@example.com)",
+            "Referer": window.location.origin,
+          },
+        });
+        if (!response.ok) throw new Error("Failed to fetch location suggestions");
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
+    }
+
+    function showSuggestions(suggestions) {
+      const container = document.getElementById("location-suggestions");
+      container.innerHTML = "";
+      if (!suggestions.length) {
+        container.classList.add("hidden");
+        document.getElementById("location-input").setAttribute("aria-expanded", "false");
+        return;
+      }
+      suggestions.forEach((item, index) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.setAttribute("role", "option");
+        btn.id = `location-suggestion-${index}`;
+        btn.textContent = item.display_name;
+        btn.addEventListener("click", () => {
+          const input = document.getElementById("location-input");
+          input.value = item.display_name;
+          container.classList.add("hidden");
+          input.setAttribute("aria-expanded", "false");
+          input.focus();
+        });
+        container.appendChild(btn);
+      });
+      container.classList.remove("hidden");
+      document.getElementById("location-input").setAttribute("aria-expanded", "true");
+    }
+
+   
+    function hideSuggestions() {
+      const container = document.getElementById("location-suggestions");
+      container.classList.add("hidden");
+      document.getElementById("location-input").setAttribute("aria-expanded", "false");
+    }
+
+    const locationInput = document.getElementById("location-input");
+    locationInput.addEventListener("input", () => {
+      clearTimeout(autocompleteTimeout);
+      const query = locationInput.value.trim();
+      if (query.length < 3) {
+        hideSuggestions();
+        return;
+      }
+      autocompleteTimeout = setTimeout(async () => {
+        const suggestions = await fetchLocationSuggestions(query);
+        showSuggestions(suggestions);
+      }, 300);
+    });
+
+    locationInput.addEventListener("blur", () => {
+      setTimeout(() => {
+        hideSuggestions();
+      }, 200);
+    });
+
+    
+    async function fetchAndRender(lat, lng) {
+      const status = document.getElementById("location-status");
+      const cafesList = document.getElementById("cafes-list");
+      const gamezonesList = document.getElementById("gamezones-list");
+      const bookstoresList = document.getElementById("bookstores-list");
+      const cinemasList = document.getElementById("cinemas-list");
+      const shoppingList = document.getElementById("shopping-list");
+      const funList = document.getElementById("fun-list");
+
+      const radiusMeters = 3000;
+
+      status.textContent = "Fetching nearby cafes...";
+      cafesList.innerHTML =
+        '<p class="text-secondary-400 col-span-full text-center">Loading cafes...</p>';
+      const cafes = await fetchPlaces(lat, lng, radiusMeters, "cafe");
+      addDistanceToPlaces(cafes, lat, lng);
+      renderPlaces("cafes-list", cafes, "Cafe");
+
+      status.textContent = "Fetching nearby gamezones...";
+      gamezonesList.innerHTML =
+        '<p class="text-secondary-400 col-span-full text-center">Loading gamezones...</p>';
+      const gamezones = await fetchPlaces(lat, lng, radiusMeters, "gamezone");
+      addDistanceToPlaces(gamezones, lat, lng);
+      renderPlaces("gamezones-list", gamezones, "Gamezone");
+
+      status.textContent = "Fetching nearby bookstores...";
+      bookstoresList.innerHTML =
+        '<p class="text-secondary-400 col-span-full text-center">Loading bookstores...</p>';
+      const bookstores = await fetchPlaces(lat, lng, radiusMeters, "bookstore");
+      addDistanceToPlaces(bookstores, lat, lng);
+      renderPlaces("bookstores-list", bookstores, "Bookstore");
+
+      status.textContent = "Fetching nearby cinemas...";
+      cinemasList.innerHTML =
+        '<p class="text-secondary-400 col-span-full text-center">Loading cinemas...</p>';
+      const cinemas = await fetchPlaces(lat, lng, radiusMeters, "cinema");
+      addDistanceToPlaces(cinemas, lat, lng);
+      renderPlaces("cinemas-list", cinemas, "Cinema");
+
+      status.textContent = "Fetching nearby shopping spots...";
+      shoppingList.innerHTML =
+        '<p class="text-secondary-400 col-span-full text-center">Loading shopping spots...</p>';
+      const shopping = await fetchPlaces(lat, lng, radiusMeters, "shopping");
+      addDistanceToPlaces(shopping, lat, lng);
+      renderPlaces("shopping-list", shopping, "Shopping Spot");
+
+      status.textContent = "Fetching nearby fun activities...";
+      funList.innerHTML =
+        '<p class="text-secondary-400 col-span-full text-center">Loading fun activities...</p>';
+      const fun = await fetchPlaces(lat, lng, radiusMeters, "fun");
+      addDistanceToPlaces(fun, lat, lng);
+      renderPlaces("fun-list", fun, "Fun Activity");
+
+      status.textContent = `Showing real hidden gems near you (${lat.toFixed(
+        4
+      )}, ${lng.toFixed(4)})`;
+
+      window.currentData = { cafes, gamezones, bookstores, cinemas, shopping, fun };
+    }
+
+    async function findGemsNearMe() {
+      const status = document.getElementById("location-status");
+      status.textContent = "Locating you...";
+
+      if (!navigator.geolocation) {
+        status.textContent =
+          "Geolocation is not supported by your browser. Please allow location access or use a compatible browser.";
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          status.textContent = `Location found: (${lat.toFixed(
+            4
+          )}, ${lng.toFixed(4)})`;
+          await fetchAndRender(lat, lng);
+        },
+        (error) => {
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              status.textContent =
+                "Permission denied. Please allow location access to find gems near you.";
+              break;
+            case error.POSITION_UNAVAILABLE:
+              status.textContent = "Location information is unavailable.";
+              break;
+            case error.TIMEOUT:
+              status.textContent = "The request to get your location timed out.";
+              break;
+            default:
+              status.textContent = "An unknown error occurred.";
+              break;
+          }
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 15000,
+          maximumAge: 0,
+        }
+      );
+    }
+
+   
+    async function findGemsNearLocation(location) {
+      const status = document.getElementById("location-status");
+      if (!location || location.trim() === "") {
+        status.textContent = "Please enter a valid location.";
+        return;
+      }
+      status.textContent = `Geocoding location "${location}"...`;
+      const geo = await geocodeLocation(location);
+      if (!geo) {
+        status.textContent = `Could not find location "${location}". Please try again.`;
+        return;
+      }
+      status.textContent = `Location found: ${geo.display_name}`;
+      await fetchAndRender(geo.lat, geo.lng);
+    }
+
+   
+    function searchGems(query) {
+      if (!window.currentData) return;
+      query = query.trim().toLowerCase();
+
+      function filterPlaces(places) {
+        if (!query) return places;
+        return places.filter((p) => {
+          return (
+            (p.name && p.name.toLowerCase().includes(query)) ||
+            (p.address && p.address.toLowerCase().includes(query))
+          );
+        });
+      }
+
+      const filteredCafes = filterPlaces(window.currentData.cafes);
+      const filteredGamezones = filterPlaces(window.currentData.gamezones);
+      const filteredBookstores = filterPlaces(window.currentData.bookstores);
+      const filteredCinemas = filterPlaces(window.currentData.cinemas);
+      const filteredShopping = filterPlaces(window.currentData.shopping);
+      const filteredFun = filterPlaces(window.currentData.fun);
+
+      renderPlaces("cafes-list", filteredCafes, "Cafe");
+      renderPlaces("gamezones-list", filteredGamezones, "Gamezone");
+      renderPlaces("bookstores-list", filteredBookstores, "Bookstore");
+      renderPlaces("cinemas-list", filteredCinemas, "Cinema");
+      renderPlaces("shopping-list", filteredShopping, "Shopping Spot");
+      renderPlaces("fun-list", filteredFun, "Fun Activity");
+    }
+
+ 
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("locate-btn").addEventListener("click", findGemsNearMe);
+      document.getElementById("location-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const location = document.getElementById("location-input").value;
+        findGemsNearLocation(location);
+        hideSuggestions();
+      });
+      document.getElementById("search-btn").addEventListener("click", () => {
+        const query = document.getElementById("search-input").value;
+        searchGems(query);
+      });
+      document.getElementById("search-input").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          const query = e.target.value;
+          searchGems(query);
+        }
+      });
+
+  
+      const locationInput = document.getElementById("location-input");
+      locationInput.addEventListener("input", () => {
+        clearTimeout(autocompleteTimeout);
+        const query = locationInput.value.trim();
+        if (query.length < 3) {
+          hideSuggestions();
+          return;
+        }
+        autocompleteTimeout = setTimeout(async () => {
+          const suggestions = await fetchLocationSuggestions(query);
+          showSuggestions(suggestions);
+        }, 300);
+      });
+
+      locationInput.addEventListener("blur", () => {
+        setTimeout(() => {
+          hideSuggestions();
+        }, 200);
+      });
+    });
+  </script>
+</body>
+</html>
